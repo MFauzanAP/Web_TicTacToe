@@ -1,0 +1,103 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Variables */
+:root {
+	--theme-primary		: #272728;
+
+	--text-primary		: #3D3D3D;
+	--text-secondary	: #646464;
+	--text-tertiary		: #FFFFFF;
+
+	--background-primary	: #FFFFFF;
+
+	--border-primary	: #DDDDDD;
+}
+
+/* Container */
+.container {
+	min-height		: 100vh;
+
+	margin			: 0;
+
+	display			: flex;
+	flex-direction		: column;
+	justify-content		: center;
+	align-items		: center;
+
+	font-family		: Spartan;
+}
+
+/* Page Header */
+.header {
+	color			: var(--text-primary);
+
+	font-size		: 24px;
+}
+
+/* Scoreboard */
+.scoreboard {
+	display			: flex;
+	justify-content		: center;
+	align-items		: center;
+}
+
+/* Score Container */
+.scoreboard div {
+	width			: 150px;
+	height			: 50px;
+
+	margin			: 15px 10px;
+	padding			: 0 25px;
+
+	display			: flex;
+	justify-content		: space-between;
+	align-items		: center;
+
+	border			: 1px solid var(--border-primary);
+	border-radius		: 10px;
+}
+
+/* Board */
+.board {
+	width			: 350px;
+	height			: 350px;
+
+	margin			: 25px 0;
+
+	display			: grid;
+	grid-template-columns	: repeat(3, 1fr);
+	grid-template-rows	: repeat(3, 1fr);
+	gap			: 4px;
+
+	background-color	: var(--border-primary);
+}
+
+/* Board Boxes */
+.board .box {
+	cursor			: pointer;
+
+	display			: flex;
+	justify-content		: center;
+	align-items		: center;
+
+	color			: var(--text-primary);
+	background-color	: var(--background-primary);
+
+	font-size		: 64px;
+}
+
+/* Reset Button */
+.reset {
+	cursor			: pointer;
+
+	width			: 200px;
+	height			: 50px;
+
+	margin-top		: 25px;
+
+	color			: var(--text-tertiary);
+	background-color	: var(--theme-primary);
+	border			: none;
+	border-radius		: 10px;
+}

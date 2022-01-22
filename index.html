@@ -7,31 +7,55 @@
 		<!-- Tags -->
 		<title>Tic Tac Toe</title>
 
+		<!-- Import Stylesheet -->
+		<link rel='stylesheet' type='text/css' href='./styles.css'/>
+
 		<!-- Import Scripts -->
 		<script src='js/board.js'></script>
 
 	</head>
 
 	<!-- Body -->
-	<body>
+	<body class='container'>
 
 		<!-- Page Header -->
-		<h1>Tic Tac Toe</h1>
+		<h1 class='header'>Tic Tac Toe</h1>
 
 		<!-- Scoreboard -->
-		<p class='scoreboard'>
-			P1 - 0<br/>
-			P2 - 0
-		</p>
+		<div class='scoreboard'>
+			
+			<!-- Left -->
+			<div class='left'>
+
+				<!-- Player Number -->
+				<p class='number'>P1</p>
+
+				<!-- Player Score -->
+				<p class='score'>-</p>
+
+			</div>
+
+			<!-- Right -->
+			<div class='right'>
+
+				<!-- Player Number -->
+				<p class='number'>P2</p>
+
+				<!-- Player Score -->
+				<p class='score'>-</p>
+
+			</div>
+
+		</div>
 
 		<!-- Board -->
 		<div class='board'>
 
 			<!-- Boxes -->
+			<div class='box'>X</div>
 			<div class='box'></div>
 			<div class='box'></div>
-			<div class='box'></div>
-			<div class='box'></div>
+			<div class='box'>O</div>
 			<div class='box'></div>
 			<div class='box'></div>
 			<div class='box'></div>
@@ -41,7 +65,7 @@
 		</div>
 
 		<!-- Reset Button -->
-		<button>Reset</button>
+		<button class='reset'>Reset</button>
 
 	</body>
 
