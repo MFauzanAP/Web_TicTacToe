@@ -4,6 +4,9 @@ let maxIterations = 5;
 //	Function called to calculate the best move
 let CalculateBestMove = (curBoard, curMoves, player, curRound) => {
 
+	//	If only the first round
+	if (curRound == 0) return [ [ Math.floor(Math.random() * 3), Math.floor(Math.random() * 3) ], 0 ]
+
 	//	Check if the current move will result in a win
 	let curPlayerWin = CheckWin(curBoard, curMoves, player, curRound);
 	let prevPlayerWin = CheckWin(curBoard, curMoves, player == 'X' ? 'O' : 'X', curRound);
@@ -19,7 +22,7 @@ let CalculateBestMove = (curBoard, curMoves, player, curRound) => {
 
 	//	Declare best move
 	let max = -Infinity;
-	let move = [];
+	let moves = [];
 	let score = 0;
 
 	//	Go through the board and generate possible moves
@@ -48,7 +51,13 @@ let CalculateBestMove = (curBoard, curMoves, player, curRound) => {
 
 				//	Set best move as this
 				max = res;
-				move = [ x, y ];
+				moves = [ [ x, y ] ];
+
+			}
+			else if (res == max) {
+
+				//	Add to list of moves
+				moves.push([ x, y ]);
 
 			}
 
@@ -57,6 +66,6 @@ let CalculateBestMove = (curBoard, curMoves, player, curRound) => {
 	}
 
 	//	Return nothing
-	return [ move, score ];
+	return [ moves[Math.floor(Math.random() * moves.length)], score ];
 
 }
