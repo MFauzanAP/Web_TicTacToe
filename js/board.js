@@ -35,6 +35,26 @@ let ResetBoard = () => {
 	//	Update board state
 	UpdateBoard(temp);
 
+	//	Set starting player as loser
+	curPlayer = winner !== 'draw' ? (winner == 'X' ? 'O' : 'X') : (Math.round(Math.random()) == 0 ? 'X' : 'O');
+
+	//	Update current player graphics
+	document.querySelector('.scoreboard .active').classList.remove('active');
+	document.querySelector(`.scoreboard .${curPlayer == 'X' ? 'left' : 'right'}`).classList.add('active');
+
+	//	Unlock board if current player is not ai
+	if (curPlayer !== 'O') document.querySelector('.board').classList.remove('locked');
+	else {
+		
+		//	Lock the board
+		document.querySelector('.board').classList.add('locked');
+
+		//	Make the AI move
+		let bestMove = CalculateBestMove(JSON.parse(JSON.stringify(board)), JSON.parse(JSON.stringify(moves)), curPlayer, round)[0];
+		ChooseBox(bestMove[0], bestMove[1]);
+
+	}
+
 }
 
 //	Function called to choose a box
