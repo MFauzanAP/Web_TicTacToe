@@ -56,6 +56,13 @@
 
 	border			: 1px solid var(--border-primary);
 	border-radius		: 10px;
+
+	transition		: 0.15s ease-in-out;
+}
+
+/* Active Player */
+.scoreboard div.active {
+	border			: 2px solid var(--theme-primary);
 }
 
 /* Board */

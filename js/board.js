@@ -62,6 +62,10 @@ let ChooseBox = (x, y) => {
 	//	Switch current player
 	curPlayer = curPlayer == 'X' ? 'O' : 'X';
 
+	//	Update current player graphics
+	document.querySelector('.scoreboard .active').classList.remove('active');
+	document.querySelector(`.scoreboard .${curPlayer == 'X' ? 'left' : 'right'}`).classList.add('active');
+
 	//	Increment round
 	round++;
 
@@ -176,6 +180,10 @@ let EndGame = (winner) => {
 
 	//	Set starting player as loser
 	curPlayer = winner == 'draw' ? winner == 'X' ? 'O' : 'X' : curPlayer;
+
+	//	Update current player graphics
+	document.querySelector('.scoreboard .active').classList.remove('active');
+	document.querySelector(`.scoreboard .${curPlayer == 'X' ? 'left' : 'right'}`).classList.add('active');
 
 	//	Reset board
 	ResetBoard();
