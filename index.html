@@ -39,7 +39,7 @@
 			<div class='right'>
 
 				<!-- Player Number -->
-				<p class='number'>P2</p>
+				<p class='number'>AI</p>
 
 				<!-- Player Score -->
 				<p class='score'>-</p>
@@ -52,20 +52,20 @@
 		<div class='board'>
 
 			<!-- Boxes -->
-			<div class='box'>X</div>
-			<div class='box'></div>
-			<div class='box'></div>
-			<div class='box'>O</div>
-			<div class='box'></div>
-			<div class='box'></div>
-			<div class='box'></div>
-			<div class='box'></div>
-			<div class='box'></div>
+			<div class='box' onclick='ChooseBox(0, 0)'></div>
+			<div class='box' onclick='ChooseBox(0, 1)'></div>
+			<div class='box' onclick='ChooseBox(0, 2)'></div>
+			<div class='box' onclick='ChooseBox(1, 0)'></div>
+			<div class='box' onclick='ChooseBox(1, 1)'></div>
+			<div class='box' onclick='ChooseBox(1, 2)'></div>
+			<div class='box' onclick='ChooseBox(2, 0)'></div>
+			<div class='box' onclick='ChooseBox(2, 1)'></div>
+			<div class='box' onclick='ChooseBox(2, 2)'></div>
 
 		</div>
 
 		<!-- Reset Button -->
-		<button class='reset'>Reset</button>
+		<button class='reset' onclick='ResetBoard()'>Reset</button>
 
 	</body>
 
