@@ -10,9 +10,6 @@ let score = [ 0, 0 ];
 //	Holds current player
 let curPlayer = 'X';
 
-//	Hold the current round
-let round = 0;
-
 //	Function called to reset the board
 let ResetBoard = () => {
 
@@ -55,33 +52,22 @@ let ChooseBox = (x, y) => {
 	//	Update board state
 	UpdateBoard(board);
 
-	//	Check for a win
-	if (CheckWin()) EndGame(curPlayer);
-	else if (round >= 8) EndGame('draw');
-
-	//	Switch current player
-	curPlayer = curPlayer == 'X' ? 'O' : 'X';
-
-	//	Update current player graphics
-	document.querySelector('.scoreboard .active').classList.remove('active');
-	document.querySelector(`.scoreboard .${curPlayer == 'X' ? 'left' : 'right'}`).classList.add('active');
-
-	//	Increment round
-	round++;
+	//	End the round
+	EndRound();
 
 }
 
 //	Function called to check for a win
-let CheckWin = () => {
+let CheckWin = (curBoard, curMoves, player, curRound = round) => {
 
 	//	If each player still doesn't have 3 boxes yet then exit
-	if (round < 4) return false;
+	if (curRound < 4) return false;
 
 	//	Go through each move made by the current player
-	for (let i = 0; i < moves[curPlayer].length; i++) {
+	for (let i = 0; i < curMoves[player].length; i++) {
 
 		//	Get the position at this index
-		let pos = moves[curPlayer][i];
+		let pos = curMoves[player][i];
 
 		//	Temporary counter variable
 		let j = 1;
@@ -92,13 +78,13 @@ let CheckWin = () => {
 		while (x - j >= 0 && j <= 2) {
 
 			//	Get box
-			let box = x - j >= 0 ? board[x - j][y] : '';
+			let box = x - j >= 0 ? curBoard[x - j][y] : '';
 
 			//	If this box is empty or not the current players box then break the check
-			if (box !== curPlayer) break;
+			if (box !== player) break;
 
 			//	Else if the whole column is for the current player
-			else if (box === curPlayer && j == 2) return true;
+			else if (box === player && j == 2) return true;
 
 			//	Else then increment j
 			j++;
@@ -112,13 +98,13 @@ let CheckWin = () => {
 		while (x - j >= 0 && y + j <= 2 && j <= 2) {
 
 			//	Get box
-			let box = x - j >= 0 && y + j <= 2 ? board[x - j][y + j] : '';
+			let box = x - j >= 0 && y + j <= 2 ? curBoard[x - j][y + j] : '';
 
 			//	If this box is empty or not the current players box then break the check
-			if (box !== curPlayer) break;
+			if (box !== player) break;
 
 			//	Else if the whole diagonal is for the current player
-			else if (box === curPlayer && j == 2) return true;
+			else if (box === player && j == 2) return true;
 
 			//	Else then increment j
 			j++;
@@ -132,13 +118,13 @@ let CheckWin = () => {
 		while (y + j <= 2 && j <= 2) {
 
 			//	Get box
-			let box = y + j <= 2 ? board[x][y + j] : '';
+			let box = y + j <= 2 ? curBoard[x][y + j] : '';
 
 			//	If this box is empty or not the current players box then break the check
-			if (box !== curPlayer) break;
+			if (box !== player) break;
 
 			//	Else if the whole row is for the current player
-			else if (box === curPlayer && j == 2) return true;
+			else if (box === player && j == 2) return true;
 
 			//	Else then increment j
 			j++;
@@ -152,13 +138,13 @@ let CheckWin = () => {
 		while (x + j <= 2 && y + j <= 2 && j <= 2) {
 
 			//	Get box
-			let box = x + j <= 2 && y + j <= 2 ? board[x + j][y + j] : '';
+			let box = x + j <= 2 && y + j <= 2 ? curBoard[x + j][y + j] : '';
 
 			//	If this box is empty or not the current players box then break the check
-			if (box !== curPlayer) break;
+			if (box !== player) break;
 
 			//	Else if the whole diagonal is for the current player
-			else if (box === curPlayer && j == 2) return true;
+			else if (box === player && j == 2) return true;
 
 			//	Else then increment j
 			j++;
@@ -169,24 +155,6 @@ let CheckWin = () => {
 
 	//	Return false
 	return false;
-
-}
-
-//	Function called when a player wins
-let EndGame = (winner) => {
-
-	//	If not a draw then increment the winners score
-	if (winner !== 'draw') score[winner == 'X' ? 0 : 1] += 1
-
-	//	Set starting player as loser
-	curPlayer = winner == 'draw' ? winner == 'X' ? 'O' : 'X' : curPlayer;
-
-	//	Update current player graphics
-	document.querySelector('.scoreboard .active').classList.remove('active');
-	document.querySelector(`.scoreboard .${curPlayer == 'X' ? 'left' : 'right'}`).classList.add('active');
-
-	//	Reset board
-	ResetBoard();
 
 }
 

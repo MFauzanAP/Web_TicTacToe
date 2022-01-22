@@ -80,6 +80,11 @@
 	background-color	: var(--border-primary);
 }
 
+/* Locked Board */
+.locked.board {
+	pointer-events		: none;
+}
+
 /* Board Boxes */
 .board .box {
 	cursor			: pointer;
