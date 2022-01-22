@@ -2,7 +2,7 @@
 let round = 0;
 
 //	Hold winner
-let winner = 'X';
+let winner = 'draw';
 
 //	Function called to end the round
 let EndRound = () => {
@@ -41,7 +41,7 @@ let EndRound = () => {
 }
 
 //	Function called when a player wins
-let EndGame = (w) => {
+let EndGame = (w = 'draw') => {
 
 	//	Update winner variable
 	winner = w;
