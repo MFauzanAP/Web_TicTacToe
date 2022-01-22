@@ -5,7 +5,7 @@ let board = [];
 let moves = { X: [], O: [] };
 
 //	Hold current score
-let score = [];
+let score = [ 0, 0 ];
 
 //	Holds current player
 let curPlayer = 'X';
@@ -23,11 +23,17 @@ let ResetBoard = () => {
 		[ '.', '.', '.' ],
 	]
 
-	//	Reset list of moves
+	//	Reset list of moves and round
 	moves = { X: [], O: [] };
+	round = 0;
 
-	//	Reset score
-	score = [ 0, 0 ];
+	//	Get elements
+	let left = document.querySelector('.left .score');
+	let right = document.querySelector('.right .score');
+
+	//	Update scoreboard
+	left.textContent = score[0] || '-';
+	right.textContent = score[1] || '-';
 
 	//	Update board state
 	UpdateBoard(temp);
@@ -51,7 +57,7 @@ let ChooseBox = (x, y) => {
 
 	//	Check for a win
 	if (CheckWin()) EndGame(curPlayer);
-	else if (round == 8) EndGame('draw');
+	else if (round >= 8) EndGame('draw');
 
 	//	Switch current player
 	curPlayer = curPlayer == 'X' ? 'O' : 'X';
@@ -165,7 +171,14 @@ let CheckWin = () => {
 //	Function called when a player wins
 let EndGame = (winner) => {
 
-	console.log(winner);
+	//	If not a draw then increment the winners score
+	if (winner !== 'draw') score[winner == 'X' ? 0 : 1] += 1
+
+	//	Set starting player as loser
+	curPlayer = winner == 'draw' ? winner == 'X' ? 'O' : 'X' : curPlayer;
+
+	//	Reset board
+	ResetBoard();
 
 }
 
@@ -188,7 +201,7 @@ let UpdateBoard = (newBoard) => {
 			let index = (x * 3) + y;
 
 			//	Update box element at this position if not a .
-			if (board[x][y] !== '.') boxes[index].textContent = board[x][y];
+			boxes[index].textContent = board[x][y] !== '.' ? board[x][y] : '';
 
 		}
 
