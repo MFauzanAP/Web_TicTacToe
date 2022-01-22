@@ -18,7 +18,7 @@ let CalculateBestMove = (curBoard, curMoves, player, curRound) => {
 	if ((curPlayerWin && player == 'X') || (prevPlayerWin && player == 'O')) return [ [], -1 / (curRound - round) ];
 
 	//	If this is the end of the iterative depth
-	if (curRound >= round + maxIterations) return [ [], 0 ];
+	if (curRound >= round + maxIterations || curRound > 8) return [ [], 0 ];
 
 	//	Declare best move
 	let max = -Infinity;
